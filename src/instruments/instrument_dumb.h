@@ -16,7 +16,8 @@ namespace upc {
     InstrumentDumb(const std::string &param = "");
     void command(long cmd, long note, long velocity=1); 
     const std::vector<float> & synthesize();
-    bool is_active() const {return bActive;} 
+    bool is_active() const {return bActive;}
+    float phase, phase_act;
   };
 }
 
