@@ -91,20 +91,6 @@ const vector<float> &InstrumentSeno::synthesize()
   else if (not bActive)
     return x;
 
-  /*En general, al recorrer la tabla con los saltos adecuados para producir una cierta
-  frecuencia fundamental, será necesario acceder a índices no enteros de la tabla. Es
-  decir, el valor deseado no se corresponde con ninguno de los que están almacenados
-  en ella, sino a uno intermedio entre dos que sí lo están (que pueden ser el último y el
-  primero...).
-
-  ◦ En primera aproximación, puede redondear el índice requerido a entero y usar
-  para la muestra uno de los valores almacenados en la tabla. <-- LO QUE ESTAMOS USANDO AHORA
-
-  ⋄ Pero esta solución introduce una distorsión que es claramente audible.
-
-  ◦ Como trabajo de ampliación, se propone calcular el valor de la muestra como
-  interpolación lineal entre los valores inmediatamente anterior y posterior al índice
-  deseado (pero recuerde que el siguiente del último es el primero...)*/
   for (unsigned int i = 0; i < x.size(); ++i)
   {
     phas += increment;
@@ -141,8 +127,6 @@ const vector<float> &InstrumentSeno::synthesize()
   return x;
 }
 
-/*en caso de quer realizar la ampliación como dice arriba, podemos realizar la interpolación
-   de la siguiente manera:*/
 
 float InstrumentSeno::getInterpolatedValue(const float phas)
 {
